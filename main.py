@@ -77,6 +77,7 @@ def ask_gemini(question: str):
 
     response = requests.post(url, headers=headers, json=body, timeout=10)
 
+
     if response.status_code != 200:
         raise ValueError("AI service error")
 
