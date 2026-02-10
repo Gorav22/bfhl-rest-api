@@ -106,15 +106,15 @@ def process_request(request: BFHLRequest):
 
     provided_keys = [k for k, v in request.dict().items() if v is not None]
 
-    # if len(provided_keys) != 1:
-    #     raise HTTPException(
-    #         status_code=400,
-    #         detail={
-    #             "is_success": False,
-    #             "official_email": OFFICIAL_EMAIL,
-    #             "error": "Exactly one key must be provided"
-    #         }
-    #     )
+    if len(provided_keys) != 1:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "is_success": False,
+                "official_email": OFFICIAL_EMAIL,
+                "error": "Exactly one key must be provided"
+            }
+        )
 
     key = provided_keys[0]
     value = getattr(request, key)
